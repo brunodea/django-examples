@@ -20,11 +20,28 @@ def hours_ahead(request, plus):
 	html = "<html><body>In %d hour(s), it will be %s.</body></html>" % (plus, ahead)
 	return HttpResponse(html)
 
-def personal_datetime(request):
-	raw_template = "<html><body> Hello, my name is {{ server_name }} and it is {{ time }}.</html></body>"
+def conditional_datetime(request, plus):
+	raw_template = """
+		<html><body> Hello, my name is {{ server_name }} and 
+		{% if invalid_plus %}
+			the additional time was invalid.
+		{% else %}	
+			it will be {{ time }}.
+		{% endif %}
+
+		</html></body>"""
+
+	invalid = False
+	try:
+		plus = int(plus)
+	except ValueError:
+		invalid = True
+		plus = 0
+
+	invalid = plus > 24
 
 	t = Template(raw_template)
-	c = Context({"server_name" : "GlaDUS", "time" : datetime.now()})
+	c = Context({"server_name" : "GlaDUS", "time" : datetime.now() + timedelta(hours = plus), "invalid_plus": invalid})
 
 	return HttpResponse(t.render(c))
 
