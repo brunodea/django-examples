@@ -37,3 +37,9 @@ def conditional_datetime(request, plus):
 
 	return HttpResponse(t.render(c))
 
+	#from django.shortcuts import render
+	#return render(request, 'home.html', {'server_name':'GlaDUS', 'time': ...})
+	#nao precisa mais importar Template, get_template, Context ou HttpResponse.
+
+
+
