@@ -1,18 +1,7 @@
-<html>
-<body>
+{% extends "base.html" %}
 
-{% include nav_template %}
+{% block title %} Current Time {% endblock %}
 
-<div id="content">
-
-	Hello, my name is {{ server_name }} and 
-	{% if invalid_plus %}
-		the additional time was invalid.
-	{% else %}	
-		it will be {{ time }}.
-	{% endif %}
-
-</div>
-
-</html>
-</body>
+{% block content %}
+	<p>Hello, it is now {{ time }}!</p>
+{% endblock %}
