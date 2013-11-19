@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.template import Template, Context
 from django.template.loader import get_template
+from django.shortcuts import render
 
 def hello(request):
 	return HttpResponse("Hello World")
@@ -32,14 +33,10 @@ def conditional_datetime(request, plus):
 
 	invalid = plus > 24
 
-	t = get_template("home.html")
-	c = Context({"server_name" : "GlaDUS", "time" : datetime.now() + timedelta(hours = plus), "invalid_plus": invalid})
+	c = {"server_name" : "GlaDUS", "time" : datetime.now() + timedelta(hours = plus), "invalid_plus": invalid,
+		"nav_template": "nav.html", "current_section": "Conditional Datetime"}
 
-	return HttpResponse(t.render(c))
-
-	#from django.shortcuts import render
-	#return render(request, 'home.html', {'server_name':'GlaDUS', 'time': ...})
-	#nao precisa mais importar Template, get_template, Context ou HttpResponse.
+	return render(request, 'home.html', c)
 
 
 

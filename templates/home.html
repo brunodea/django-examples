@@ -1,12 +1,18 @@
 <html>
-<body> 
+<body>
 
-Hello, my name is {{ server_name }} and 
-{% if invalid_plus %}
-	the additional time was invalid.
-{% else %}	
-	it will be {{ time }}.
-{% endif %}
+{% include nav_template %}
+
+<div id="content">
+
+	Hello, my name is {{ server_name }} and 
+	{% if invalid_plus %}
+		the additional time was invalid.
+	{% else %}	
+		it will be {{ time }}.
+	{% endif %}
+
+</div>
 
 </html>
 </body>
