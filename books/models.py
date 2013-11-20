@@ -16,7 +16,7 @@ class Publisher(models.Model):
 	def __unicode__(self):
 		return self.name
 
-	def Meta:
+	class Meta:
 		ordering = ['name']
 
 class Author(models.Model):
