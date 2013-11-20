@@ -7,7 +7,7 @@
 	<p>Your search was: <strong> {{ query }} </strong></p>
 
 	{% if books %}
-	<p>Found {{ books|length }} book{{ books|pluraliza }}.</p>
+	<p>Found {{ books|length }} book{{ books|pluralize }}.</p>
 	<ul>
 		{% for book in books %}
 		<li>{{ book.title }}</li>

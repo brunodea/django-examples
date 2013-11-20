@@ -10,6 +10,6 @@ def search(request):
 	if 'q' in request.GET and request.GET['q']:
 		q = request.GET['q']
 		books = Book.objects.filter(title__icontains=q) #case insensitive
-		return render(request, 'search_results.html', {'books': books, 'query': q}
+		return render(request, 'search_results.html', {'books': books, 'query': q})
 	else:
 		return HttpResponse('Please submit a search term.')
