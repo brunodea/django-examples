@@ -7,11 +7,16 @@ def search_form(request):
 	return render(request, 'search_form.html')
 
 def search(request):
-	context = {'error': True}
+	error = False
 	page = 'search_form.html'
-	if 'q' in request.GET and request.GET['q']:
+	context = {}
+	if 'q' in request.GET:
 		q = request.GET['q']
-		books = Book.objects.filter(title__icontains=q) #case insensitive
-		context = {'books': books, 'query': q}
-		page = 'search_results.html'
+		if not q:
+			error = True
+		else:
+			books = Book.objects.filter(title__icontains=q) #case insensitive
+			context = {'books': books, 'query': q}
+			page = 'search_results.html'
+	context['error'] = error
 	return render(request, page, context)
