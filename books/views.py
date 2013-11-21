@@ -7,6 +7,7 @@ def search_form(request):
 	return render(request, 'search_form.html')
 
 def search(request):
+	#para validacao: fazer a variavel 'error' ser uma lista de erros.
 	error = False
 	page = 'search_form.html'
 	context = {}
