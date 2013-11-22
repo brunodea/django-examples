@@ -16,7 +16,7 @@ def contact(request):
 			#)
 			return HttpResponseRedirect('/contact/thanks/')
 	else:
-		form = ContactForm() #primeira vez acessando a pagina.
+		form = ContactForm(initial={'subject':'Oi!'}) #primeira vez acessando a pagina.
 	return render(request, 'contact_form.html', {'form': form})
 
 def contact_thanks(request):
