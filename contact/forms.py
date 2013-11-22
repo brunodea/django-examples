@@ -5,6 +5,16 @@ class ContactForm(forms.Form):
 	email = forms.EmailField(required=False)
 	message = forms.CharField(widget=forms.Textarea)
 
+	#validacao chamada depois da validacao padrao.
+	#Django procura por metodos com nomes do tipo:
+	#clean_nomedoatributo
+	def clean_message(self):
+		message = self.cleaned_data['message']
+		num_words = len(message.split())
+		if num_words < 4:
+			raise forms.ValidationError('Not enough words!')
+		return message
+
 #>>> from contact.forms import ContactForm
 #>>> f = ContactForm()
 #>>> print f
