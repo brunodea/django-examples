@@ -1,9 +1,9 @@
 from django import forms
 
 class ContactForm(forms.Form):
-	subject = forms.CharField()
+	subject = forms.CharField(max_length=5)
 	email = forms.EmailField(required=False)
-	message = forms.CharField()
+	message = forms.CharField(widget=forms.Textarea)
 
 #>>> from contact.forms import ContactForm
 #>>> f = ContactForm()
