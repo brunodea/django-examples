@@ -2,7 +2,7 @@ from django import forms
 
 class ContactForm(forms.Form):
 	subject = forms.CharField(max_length=5)
-	email = forms.EmailField(required=False)
+	email = forms.EmailField(required=False, label='Your email address')
 	message = forms.CharField(widget=forms.Textarea)
 
 	#validacao chamada depois da validacao padrao.
